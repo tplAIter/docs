@@ -13,12 +13,11 @@ jobs:
     steps:
       # v4.2.2: immutable commit verified from the official actions/checkout ref.
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # v4.4.0: immutable commit verified from the official actions/setup-node ref.
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      # v2.2.0: immutable commit verified from the official oven-sh/setup-bun ref.
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
-          node-version: 20.19.5
-          cache: npm
-      - run: npm ci
-      - run: npm audit
-      - run: npm run lint
-      - run: npm run build
+          bun-version: 1.4.2
+      - run: bun install --frozen-lockfile
+      - run: bun audit
+      - run: bun run lint
+      - run: bun run build

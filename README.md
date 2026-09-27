@@ -4,19 +4,19 @@ This is the private, unreleased documentation site for tplAIter. It is an indepe
 
 ## Local development
 
-Requires Node.js 20 or newer.
+Requires Bun 1.4.2 or newer.
 
 ```sh
-npm ci
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 The production checks are:
 
 ```sh
-npm run lint
-npm run build
-npm audit
+bun run lint
+bun run build
+bun audit
 ```
 
 The repository is intentionally private while publication and licensing decisions are pending. Do not treat the private checkpoint as a public installation source.
