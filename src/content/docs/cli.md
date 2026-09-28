@@ -18,4 +18,4 @@ The current checkpoint is best used to inspect template repositories and validat
 
 The public development preview does not promise that live `new` or `update` workflows are available. Stock lifecycle commands can stop with `TRUST_ANCHOR_MISSING` or `TRUST_LIFECYCLE_UNAVAILABLE` while trust registration and lifecycle support are completed.
 
-Use the inspection commands to review an already registered catalog. See [Getting started](/getting-started/) and [Development status](/status/) before planning a live project workflow.
+Use the inspection commands to review an already registered catalog. See [Getting started](/docs/getting-started/) and [Development status](/docs/status/) before planning a live project workflow.

@@ -21,4 +21,4 @@ tplaiter template list
 tplaiter template show <ref>
 ```
 
-Template package validation is documented separately in [Template validation](/template-validation/).
+Template package validation is documented separately in [Template validation](/docs/template-validation/).

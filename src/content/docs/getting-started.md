@@ -27,4 +27,4 @@ tplaiter template pull <ref> --dest ./template
 
 Stock lifecycle commands can stop with `TRUST_ANCHOR_MISSING` or `TRUST_LIFECYCLE_UNAVAILABLE`. Live project creation and update are unavailable in this checkpoint, so the supported starting point is read-only exploration and template authoring reference.
 
-See [Development status](/status/) for the current scope and [CLI & MCP](/cli/) for the available inspection commands.
+See [Development status](/docs/status/) for the current scope and [CLI & MCP](/docs/cli/) for the available inspection commands.

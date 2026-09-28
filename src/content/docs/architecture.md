@@ -17,4 +17,4 @@ A repository exposes named template packages. A manifest describes inputs and ou
 
 The source dependency DAG, export selection graph, and optional post-render semantic graph are separate layers. Ordinary rendering does not depend on graph analysis.
 
-This boundary keeps an optional inspection feature from changing the rendering contract. See [Graphs & context](/graphs/) for the local explorer and its evidence rules.
+This boundary keeps an optional inspection feature from changing the rendering contract. See [Graphs & context](/docs/graphs/) for the local explorer and its evidence rules.

@@ -22,3 +22,9 @@ bun audit
 
 The repository is a public development preview licensed under MIT. It has
 no tagged release or compatibility promise.
+
+## GitHub Pages deployment
+
+The `main` branch deploys the static site to [tplaiter.github.io/docs](https://tplaiter.github.io/docs/)
+through GitHub Actions. Enable **Settings → Pages → Build and deployment → Source: GitHub Actions**
+once in the repository settings; the workflow also supports a manual run from the Actions tab.

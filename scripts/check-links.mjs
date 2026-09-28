@@ -3,6 +3,7 @@ import { extname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const output = fileURLToPath(new URL('../dist/', import.meta.url));
+const base = '/docs';
 const htmlFiles = [];
 
 async function collect(directory) {
@@ -15,7 +16,8 @@ async function collect(directory) {
 
 function localTarget(link) {
   if (!link || link.startsWith('#') || /^(?:https?:|mailto:|tel:)/.test(link)) return null;
-  const [path] = link.split('#');
+  const [rawPath] = link.split('#');
+  const path = rawPath === base ? '/' : rawPath.startsWith(`${base}/`) ? rawPath.slice(base.length) : rawPath;
   if (!path) return null;
   if (path.endsWith('/')) return `${path}index.html`;
   return extname(path) ? path : `${path}/index.html`;

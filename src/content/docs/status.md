@@ -20,4 +20,4 @@ The core is being prepared as a clean, independently reviewed public source tree
 
 The checkpoint preserves the Go `text/template` rendering model. It has not been published as a release and has no compatibility or support commitment.
 
-Read-only commands and template authoring references are the supported starting point while lifecycle and trust registration work continues. The [graphs documentation](/graphs/) describes the local explorer's evidence limits, and [CLI & MCP](/cli/) documents the inspection-oriented command surface.
+Read-only commands and template authoring references are the supported starting point while lifecycle and trust registration work continues. The [graphs documentation](/docs/graphs/) describes the local explorer's evidence limits, and [CLI & MCP](/docs/cli/) documents the inspection-oriented command surface.
