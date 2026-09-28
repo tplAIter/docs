@@ -19,4 +19,6 @@ bun run build
 bun audit
 ```
 
-The repository is intentionally private while publication and licensing decisions are pending. Do not treat the private checkpoint as a public installation source.
+The repository is intentionally private while publication work continues. It is
+licensed under MIT, but the preview is not a public installation source and has
+no release or compatibility promise.
