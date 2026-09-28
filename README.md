@@ -1,6 +1,8 @@
 # tplAIter documentation
 
-This is the public development preview of the documentation site for tplAIter. It is an independent presentation layer and does not change the Go engine. There is no public deployment, tagged release, or compatibility promise yet.
+This is the public development preview of the documentation site for tplAIter. It is an independent presentation layer and does not change the Go `text/template` engine. There is no public deployment, tagged release, or compatibility promise yet.
+
+The site is built with [Astro Starlight](https://starlight.astro.build/). Starlight supplies the responsive navigation, table of contents, theme switcher, code blocks, and Pagefind-powered static search; the docs content remains ordinary Markdown and MDX.
 
 ## Local development
 
@@ -14,8 +16,7 @@ bun run dev
 The production checks are:
 
 ```sh
-bun run lint
-bun run build
+bun run check
 bun audit
 ```
 

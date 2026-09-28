@@ -1,0 +1,94 @@
+---
+const nodes = [
+  { id: 'source', label: 'Source files', detail: 'Typed syntax nodes retain their source path and line evidence.' },
+  { id: 'manifest', label: 'Manifest', detail: 'Declared packages and exports form a separate selection graph.' },
+  { id: 'render', label: 'Render', detail: 'Go text/template materializes selected source into a destination.' },
+  { id: 'context', label: 'Context pack', detail: 'A bounded, CLI-selected metadata pack can support follow-on retrieval.' },
+];
+---
+
+<section class="graph-explorer" data-graph-explorer aria-label="Illustrative local graph explorer">
+  <div class="graph-toolbar">
+    <div>
+      <span class="graph-kicker">Local graph explorer</span>
+      <strong>Inspect evidence without inventing relations</strong>
+    </div>
+    <span class="graph-hint">Select a node</span>
+  </div>
+  <div class="graph-canvas">
+    <svg viewBox="0 0 720 220" role="img" aria-label="Source files flow through a manifest and render into a context pack">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
+        </marker>
+      </defs>
+      <path class="graph-edge" d="M150 110 H245" marker-end="url(#arrow)" />
+      <path class="graph-edge" d="M335 110 H430" marker-end="url(#arrow)" />
+      <path class="graph-edge" d="M520 110 H615" marker-end="url(#arrow)" />
+      {nodes.map((node, index) => (
+        <g class="graph-node" data-node={node.id} tabindex="0" role="button" aria-label={`Inspect ${node.label}`} transform={`translate(${30 + index * 185} 65)`}>
+          <rect width="120" height="90" rx="10" />
+          <text x="60" y="43" text-anchor="middle">{node.label}</text>
+          <text class="graph-node-type" x="60" y="64" text-anchor="middle">{index === 0 ? 'syntax' : index === 1 ? 'selection' : index === 2 ? 'materialization' : 'bounded metadata'}</text>
+        </g>
+      ))}
+    </svg>
+  </div>
+  <p class="graph-scroll-note">On a narrow screen, scroll this diagram horizontally to inspect each node.</p>
+  <div class="graph-inspector" aria-live="polite">
+    <span class="graph-inspector-label">Selected node</span>
+    <strong data-graph-title>Source files</strong>
+    <p data-graph-detail>Typed syntax nodes retain their source path and line evidence.</p>
+  </div>
+</section>
+
+<script>
+  const nodes = [
+    { id: 'source', label: 'Source files', detail: 'Typed syntax nodes retain their source path and line evidence.' },
+    { id: 'manifest', label: 'Manifest', detail: 'Declared packages and exports form a separate selection graph.' },
+    { id: 'render', label: 'Render', detail: 'Go text/template materializes selected source into a destination.' },
+    { id: 'context', label: 'Context pack', detail: 'A bounded, CLI-selected metadata pack can support follow-on retrieval.' },
+  ];
+  document.querySelectorAll('[data-graph-explorer]').forEach((explorer) => {
+    const title = explorer.querySelector<HTMLElement>('[data-graph-title]');
+    const detail = explorer.querySelector<HTMLElement>('[data-graph-detail]');
+    const select = (id: string) => {
+      const node = nodes.find((entry) => entry.id === id);
+      if (!node || !title || !detail) return;
+      explorer.querySelectorAll<HTMLElement>('[data-node]').forEach((element) => element.classList.toggle('is-selected', element.dataset.node === id));
+      title.textContent = node.label;
+      detail.textContent = node.detail;
+    };
+    explorer.querySelectorAll<HTMLElement>('[data-node]').forEach((element) => {
+      element.addEventListener('click', () => select(element.dataset.node ?? ''));
+      element.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          select(element.dataset.node ?? '');
+        }
+      });
+    });
+    select('source');
+  });
+</script>
+
+<style>
+  .graph-explorer { border: 1px solid var(--sl-color-gray-4); border-radius: 0.9rem; margin-block: 2rem; overflow: hidden; }
+  .graph-toolbar { align-items: center; background: var(--sl-color-gray-6); display: flex; gap: 1rem; justify-content: space-between; padding: 1rem 1.2rem; }
+  .graph-toolbar strong { display: block; font-size: 0.95rem; }
+  .graph-kicker, .graph-hint, .graph-inspector-label { color: var(--sl-color-gray-2); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .graph-hint { white-space: nowrap; }
+  .graph-canvas { color: var(--sl-color-accent); overflow-x: auto; padding: 1rem; }
+  .graph-scroll-note { color: var(--sl-color-gray-2); display: none; font-size: 0.8rem; margin: 0; padding: 0 1.2rem 0.9rem; }
+  svg { display: block; min-width: 42rem; width: 100%; }
+  .graph-edge { stroke: currentColor; stroke-dasharray: 4 5; stroke-width: 2; }
+  .graph-node { cursor: pointer; outline: none; }
+  .graph-node rect { fill: var(--sl-color-gray-6); stroke: var(--sl-color-gray-4); stroke-width: 1.5; transition: fill 160ms ease, stroke 160ms ease; }
+  .graph-node text { fill: var(--sl-color-white); font-size: 13px; font-weight: 700; pointer-events: none; }
+  .graph-node .graph-node-type { fill: var(--sl-color-gray-2); font-size: 9px; font-weight: 500; }
+  .graph-node:is(:hover, :focus, .is-selected) rect { fill: var(--sl-color-accent-low); stroke: var(--sl-color-accent); stroke-width: 2.5; }
+  .graph-inspector { border-top: 1px solid var(--sl-color-gray-4); padding: 1rem 1.2rem 1.2rem; }
+  .graph-inspector strong { display: block; margin-top: 0.35rem; }
+  .graph-inspector p { color: var(--sl-color-gray-2); margin: 0.4rem 0 0; }
+  @media (max-width: 40rem) { .graph-toolbar { align-items: flex-start; flex-direction: column; } .graph-hint { display: none; } .graph-scroll-note { display: block; } }
+</style>
